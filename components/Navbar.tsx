@@ -3,22 +3,23 @@ import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
-import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
 import Image from "next/image";
 import { useRouter } from "next/router";
 
+import Button from "./Button";
+
 export default function Navbar() {
   const router = useRouter();
+  const user = null;
 
   function backToHome() {
     router.push("/");
   }
 
-  // sx={{bgcolor: '#f9f8fc'}}
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="fixed">
+      <AppBar position="fixed" sx={{ bgcolor: "#fff" }}>
         <Toolbar>
           <IconButton
             size="large"
@@ -38,11 +39,14 @@ export default function Navbar() {
               onClick={backToHome}
             />
           </IconButton>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+          <Typography
+            variant="h6"
+            component="div"
+            sx={{ flexGrow: 1, color: "#0e172c" }}
+          >
             Home
           </Typography>
-          <Button color="inherit">Sign-in</Button>
-          <Button color="inherit">Login</Button>
+          <Button user={user} />
         </Toolbar>
       </AppBar>
     </Box>
