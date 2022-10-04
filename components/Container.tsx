@@ -15,7 +15,7 @@ export default function SimpleContainer({ children, pageTitle }: LayoutProps) {
         sx={{
           backgroundColor: "#fec7d7",
           minHeight: "100vh",
-          paddingTop: "3rem",
+          paddingTop: "5rem",
         }}
       >
         <Head>
