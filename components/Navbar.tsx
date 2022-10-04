@@ -7,7 +7,7 @@ import IconButton from "@mui/material/IconButton";
 import Image from "next/image";
 import { useRouter } from "next/router";
 
-import Button from "./Button";
+import NavbarButtons from "./NavbarButtons";
 
 export default function Navbar() {
   const router = useRouter();
@@ -46,7 +46,7 @@ export default function Navbar() {
           >
             Home
           </Typography>
-          <Button user={user} />
+          <NavbarButtons user={user} />
         </Toolbar>
       </AppBar>
     </Box>
