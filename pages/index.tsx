@@ -1,9 +1,13 @@
 import type { NextPage } from "next";
 
+import Container from "../components/Container";
+
 const Home: NextPage = () => {
   return (
     <>
-      <h1>HEY</h1>
+      <Container>
+        <h1>HELLO</h1>
+      </Container>
     </>
   );
 };
