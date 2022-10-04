@@ -1,61 +1,36 @@
 import React from "react";
 import Button from "@mui/material/Button";
+import IconButton from "@mui/material/IconButton";
 
-interface NavbarButtonsProps {
-  user: string | null;
-  //   onSignOut?: () => void;
-  //   onSignIn?: () => void;
-  //   onLogIn?: () => void;
+interface ButtonComponentProps {
+  content: string;
+  submit: boolean;
+  onClick?: () => void;
 }
 
-const NavbarButtons: React.FC<NavbarButtonsProps> = ({ user }) => {
+const ButtonComponent: React.FC<ButtonComponentProps> = ({
+  content,
+  onClick,
+  submit,
+}) => {
   return (
     <>
-      {user ? (
-        <Button
-          variant="contained"
-          sx={{
-            bgcolor: "#0e172c",
-            color: "#fffffe",
-            ":hover": {
-              background: "#0e172c",
-            },
-          }}
-        >
-          Sign-out
-        </Button>
-      ) : (
-        <>
-          {" "}
-          <Button
-            variant="contained"
-            sx={{
-              bgcolor: "#0e172c",
-              color: "#fffffe",
-              mr: 1,
-              ":hover": {
-                background: "#0e172c",
-              },
-            }}
-          >
-            Sign in
-          </Button>
-          <Button
-            variant="contained"
-            sx={{
-              bgcolor: "#0e172c",
-              color: "#fffffe",
-              ":hover": {
-                background: "#0e172c",
-              },
-            }}
-          >
-            Login
-          </Button>
-        </>
-      )}
+      <Button
+        type={submit ? "submit" : "button"}
+        variant="contained"
+        sx={{
+          bgcolor: "#0e172c",
+          color: "#fffffe",
+          ":hover": {
+            background: "#0e172c",
+          },
+        }}
+        onClick={onClick}
+      >
+        {content}
+      </Button>
     </>
   );
 };
 
-export default NavbarButtons;
+export default ButtonComponent;
