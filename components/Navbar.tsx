@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useContext } from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
@@ -8,10 +8,11 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 
 import NavbarButtons from "./NavbarButtons";
+import UserContext from "../lib/UserContext";
 
 export default function Navbar() {
   const router = useRouter();
-  const user = null;
+  const userContext = useContext(UserContext);
 
   function backToHome() {
     router.push("/");
@@ -46,7 +47,7 @@ export default function Navbar() {
           >
             Home
           </Typography>
-          <NavbarButtons user={user} />
+          <NavbarButtons user={userContext} />
         </Toolbar>
       </AppBar>
     </Box>

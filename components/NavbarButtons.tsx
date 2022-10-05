@@ -1,9 +1,10 @@
 import React from "react";
 import Button from "@mui/material/Button";
 import { useRouter } from "next/router";
+import User from "../interfaces/IUser";
 
 interface NavbarButtonsProps {
-  user: string | null;
+  user: User;
   //   onSignOut?: () => void;
   //   onSignIn?: () => void;
   //   onLogIn?: () => void;
@@ -18,7 +19,7 @@ const NavbarButtons: React.FC<NavbarButtonsProps> = ({ user }) => {
 
   return (
     <>
-      {user ? (
+      {user.username ? (
         <Button
           variant="contained"
           sx={{
