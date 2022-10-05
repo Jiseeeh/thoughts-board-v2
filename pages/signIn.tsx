@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback, useContext } from "react";
 import { Box, TextField, Stack, Typography } from "@mui/material";
 import { useForm, SubmitHandler } from "react-hook-form";
 import debounce from "lodash.debounce";
@@ -8,6 +8,7 @@ import { useRouter } from "next/router";
 import Container from "../components/Container";
 import Button from "../components/Button";
 import SignInMessage from "../components/SignInMessage";
+import UserContext from "../lib/UserContext";
 
 type FormData = {
   username: string;
@@ -18,6 +19,7 @@ const SignIn: React.FC = () => {
   const [formValue, setFormValue] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [isValid, setIsValid] = useState(false);
+  const { setUser } = useContext(UserContext);
   const router = useRouter();
   const {
     register,
@@ -29,7 +31,7 @@ const SignIn: React.FC = () => {
     if (!isValid) return;
 
     // set data to the context
-    // if (setUsername !== undefined) setUsername(formValue);
+    if (setUser !== undefined) setUser({ ...data });
 
     // sign in to api
     const response = await axios.post("/api/sign-in", data);
