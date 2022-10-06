@@ -80,6 +80,7 @@ const SignIn: React.FC = () => {
     []
   );
 
+  // this is just for the form to look centered
   useEffect(() => {
     window.scrollTo(0, document.body.scrollHeight);
   });
