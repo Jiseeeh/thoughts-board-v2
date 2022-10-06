@@ -121,7 +121,7 @@ const SignIn: React.FC = () => {
               helperText={errors.password && "Password is required"}
               {...register("password", { required: true })}
             />
-            <Button submit content="Submit" />
+            <Button submit content="Sign in" />
           </Stack>
         </Box>
       </Container>
