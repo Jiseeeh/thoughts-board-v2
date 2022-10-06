@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useContext } from "react";
 import { Box, TextField, Stack, Typography } from "@mui/material";
 import { useForm, SubmitHandler } from "react-hook-form";
+import { useRouter } from "next/router";
 import axios from "axios";
 
 import Container from "../components/Container";
@@ -14,6 +15,7 @@ type FormData = {
 
 const Login: React.FC = () => {
   const [isLoginFailed, setIsLoginFailed] = useState(false);
+  const router = useRouter();
   const { setUser } = useContext(UserContext);
   const {
     register,
@@ -31,6 +33,9 @@ const Login: React.FC = () => {
     // set for context
     const { username, password } = response.data;
     if (setUser !== undefined) setUser({ username, password });
+
+    // redirect to home
+    router.push("/");
   };
 
   // this is just for the form to look centered
