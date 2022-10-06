@@ -20,13 +20,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   const userValue = useMemo(() => ({ ...user, setUser }), [user, setUser]);
 
   useEffect(() => {
-    if (isAuthenticated) {
-      setUser({ username, password });
-      
-      // used for when the user navigates to 
-      // signIn or login even when authenticated
-      router.push("/")
-    }
+    if (isAuthenticated) setUser({ username, password });
   }, [isAuthenticated, password, router, username]);
 
   return (
