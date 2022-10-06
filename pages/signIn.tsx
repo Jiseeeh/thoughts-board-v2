@@ -36,7 +36,10 @@ const SignIn: React.FC = () => {
     // sign in to api
     const response = await axios.post("/api/sign-in", data);
 
-    if (response.data) router.push("/");
+    if (response.data) {
+      localStorage.setItem("token", response.data.token);
+      router.push("/");
+    }
   };
 
   // on input change
@@ -69,9 +72,8 @@ const SignIn: React.FC = () => {
           username,
         });
 
-        if (response.data.isValid) {
-          setIsValid(true);
-        }
+        if (response.data.isValid) setIsValid(true);
+
         setIsLoading(false);
       }
     }, 500),
