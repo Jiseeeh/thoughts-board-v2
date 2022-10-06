@@ -22,6 +22,10 @@ const NavbarButtons: React.FC<NavbarButtonsProps> = ({ user }) => {
     router.reload();
   };
 
+  const login = () => {
+    router.push("/login");
+  };
+
   return (
     <>
       {user.username ? (
@@ -64,6 +68,7 @@ const NavbarButtons: React.FC<NavbarButtonsProps> = ({ user }) => {
                 background: "#0e172c",
               },
             }}
+            onClick={login}
           >
             Login
           </Button>
