@@ -17,6 +17,11 @@ const NavbarButtons: React.FC<NavbarButtonsProps> = ({ user }) => {
     router.push("/signIn");
   };
 
+  const signOut = () => {
+    localStorage.removeItem("token");
+    router.reload();
+  };
+
   return (
     <>
       {user.username ? (
@@ -29,6 +34,7 @@ const NavbarButtons: React.FC<NavbarButtonsProps> = ({ user }) => {
               background: "#0e172c",
             },
           }}
+          onClick={signOut}
         >
           Sign-out
         </Button>
