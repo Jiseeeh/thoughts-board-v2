@@ -30,3 +30,21 @@ export async function addUser(username: string, password: string) {
     };
   }
 }
+
+export async function loginUser(username: string, password: string) {
+  try {
+    const user = await prisma.user.findFirst({
+      where: {
+        username,
+        password,
+      },
+    });
+
+    return user;
+  } catch (error) {
+    return {
+      success: false,
+      error,
+    };
+  }
+}
