@@ -34,6 +34,10 @@ const Login: React.FC = () => {
     const { username, password } = response.data;
     if (setUser !== undefined) setUser({ username, password });
 
+    // set token to local
+    // for later use, to verify the user.
+    localStorage.setItem("token", response.data.token);
+
     // redirect to home
     router.push("/");
   };
