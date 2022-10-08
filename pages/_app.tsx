@@ -7,7 +7,7 @@ import "../styles/globals.css";
 import Navbar from "../components/Navbar";
 import UserContext from "../lib/UserContext";
 import User from "../interfaces/IUser";
-import { useAuthentication } from "../lib/hooks";
+import useAuthentication from "../lib/hooks/useAuthentication";
 
 function MyApp({ Component, pageProps }: AppProps) {
   const { isAuthenticated, username, password } = useAuthentication();
