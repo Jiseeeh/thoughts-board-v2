@@ -2,7 +2,12 @@ import axios from "axios";
 import { useEffect, useState, useContext } from "react";
 import { useRouter } from "next/router";
 
-export function useAuthentication() {
+/**
+ * It checks if the user is authenticated, if not, it redirects them to the sign in page.
+ * @returns An object with three properties: isAuthenticated, username, and password.
+ */
+
+export default function useAuthentication() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
