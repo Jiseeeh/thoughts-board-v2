@@ -1,14 +1,16 @@
 import React, { useState, useEffect, useCallback, useContext } from "react";
 import { Box, TextField, Stack, Typography } from "@mui/material";
 import { useForm, SubmitHandler } from "react-hook-form";
+import { useRouter } from "next/router";
 import debounce from "lodash.debounce";
 import axios from "axios";
-import { useRouter } from "next/router";
 
 import Container from "../components/Container";
 import Button from "../components/Button";
 import SignInMessage from "../components/SignInMessage";
 import UserContext from "../lib/UserContext";
+import useAuthentication from "../lib/hooks/useAuthentication";
+import useAuthRedirect from "../lib/hooks/useAuthRedirect";
 
 type FormData = {
   username: string;
@@ -21,6 +23,7 @@ const SignIn: React.FC = () => {
   const [isValid, setIsValid] = useState(false);
   const { setUser } = useContext(UserContext);
   const router = useRouter();
+  const { isAuthenticated } = useAuthentication();
   const {
     register,
     handleSubmit,
@@ -61,8 +64,13 @@ const SignIn: React.FC = () => {
 
   useEffect(() => {
     checkInput(formValue);
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [formValue]);
+
+  // custom hook for redirecting the user if he/she
+  // is already logged in.
+  useAuthRedirect(isAuthenticated);
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const checkInput = useCallback(
@@ -79,11 +87,6 @@ const SignIn: React.FC = () => {
     }, 500),
     []
   );
-
-  // this is just for the form to look centered
-  useEffect(() => {
-    window.scrollTo(0, document.body.scrollHeight);
-  });
 
   return (
     <>

@@ -7,6 +7,8 @@ import axios from "axios";
 import Container from "../components/Container";
 import Button from "../components/Button";
 import UserContext from "../lib/UserContext";
+import useAuthentication from "../lib/hooks/useAuthentication";
+import useAuthRedirect from "../lib/hooks/useAuthRedirect";
 
 type FormData = {
   username: string;
@@ -15,8 +17,9 @@ type FormData = {
 
 const Login: React.FC = () => {
   const [isLoginFailed, setIsLoginFailed] = useState(false);
-  const router = useRouter();
   const { setUser } = useContext(UserContext);
+  const { isAuthenticated } = useAuthentication();
+  const router = useRouter();
   const {
     register,
     handleSubmit,
@@ -42,10 +45,9 @@ const Login: React.FC = () => {
     router.push("/");
   };
 
-  // this is just for the form to look centered
-  useEffect(() => {
-    window.scrollTo(0, document.body.scrollHeight);
-  });
+  // custom hook for redirecting the user if he/she
+  // is already logged in.
+  useAuthRedirect(isAuthenticated);
 
   return (
     <>
