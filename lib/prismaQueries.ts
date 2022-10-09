@@ -1,4 +1,5 @@
 import { prisma } from "./prisma";
+import Thought from "../interfaces/IThoughts";
 
 /**
  * If a user is found with the username, return false, otherwise return true.
@@ -63,6 +64,41 @@ export async function loginUser(username: string, password: string) {
     return {
       success: false,
       error,
+    };
+  }
+}
+
+/**
+ * It creates a thought and returns the thought created
+ * @param {Thought}  - Thought -&gt; { tag: string, title: string, body: string }
+ * @param {string} username - string
+ * @returns An object with an error and a success property.
+ */
+export async function createThought(
+  { tag, title, body }: Thought,
+  username: string
+) {
+  try {
+    const user = await prisma.user.findFirst({
+      where: {
+        username,
+      },
+    });
+
+    const thought = await prisma.thought.create({
+      data: {
+        userId: user?.id,
+        tag,
+        title,
+        body,
+      },
+    });
+
+    return thought;
+  } catch (error) {
+    return {
+      error,
+      success: false,
     };
   }
 }
