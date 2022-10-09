@@ -10,6 +10,6 @@ export default async function handler(
 
   const response = await createThought(data, username);
 
-  if (response) res.json(response);
-  else res.json({ message: "something happened" });
+  if (response) res.json({ response, success: true });
+  else res.json({ message: "something happened", success: false });
 }
