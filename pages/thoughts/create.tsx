@@ -1,7 +1,9 @@
 import React from "react";
 import ReactMarkdown from "react-markdown";
 import { useForm, SubmitHandler } from "react-hook-form";
+import { useRouter } from "next/router";
 import axios from "axios";
+import toast from "react-hot-toast";
 import {
   Box,
   Typography,
@@ -36,6 +38,7 @@ const HtmlTooltip = styled(({ className, ...props }: TooltipProps) => (
 
 // ? Component
 const CreateThought: React.FC = () => {
+  const router = useRouter();
   const width = {
     minWidth: 300,
     maxWidth: 300,
@@ -53,7 +56,16 @@ const CreateThought: React.FC = () => {
       username: localStorage.getItem("username"),
     });
 
-    // TOAST SUCCESS then back to home
+    // toast success then back to home
+    if (response.data.success) {
+      toast.success("Thought created!", {
+        duration: 2000,
+      });
+
+      setTimeout(() => {
+        router.push("/");
+      }, 2000);
+    }
   };
 
   return (

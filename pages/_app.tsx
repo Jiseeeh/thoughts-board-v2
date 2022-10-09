@@ -2,6 +2,7 @@ import { ScopedCssBaseline } from "@mui/material";
 import type { AppProps } from "next/app";
 import { useState, useMemo, useEffect } from "react";
 import { useRouter } from "next/router";
+import { Toaster } from "react-hot-toast";
 
 import "../styles/globals.css";
 import Navbar from "../components/Navbar";
@@ -29,6 +30,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         <Navbar />
         <Component {...pageProps} />
       </ScopedCssBaseline>
+      <Toaster />
     </UserContext.Provider>
   );
 }

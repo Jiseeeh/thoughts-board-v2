@@ -1000,7 +1000,7 @@
     "shebang-command" "^2.0.0"
     "which" "^2.0.1"
 
-"csstype@^3.0.2", "csstype@^3.1.1":
+"csstype@^3.0.10", "csstype@^3.0.2", "csstype@^3.1.1":
   "integrity" "sha512-DJR/VvkAvSZW9bTouZue2sSxDwdTN92uHjqeKVm+0dAqdfNykRzQ95tay8aXMBAAPpUiq4Qcug2L7neoRh2Egw=="
   "resolved" "https://registry.npmjs.org/csstype/-/csstype-3.1.1.tgz"
   "version" "3.1.1"
@@ -1607,6 +1607,11 @@
     "ignore" "^5.2.0"
     "merge2" "^1.4.1"
     "slash" "^3.0.0"
+
+"goober@^2.1.10":
+  "integrity" "sha512-5SS2lmxbhqH0u9ABEWq7WPU69a4i2pYcHeCxqaNq6Cw3mnrF0ghWNM4tEGid4dKy8XNIAUbuThuozDHHKJVh3A=="
+  "resolved" "https://registry.npmjs.org/goober/-/goober-2.1.11.tgz"
+  "version" "2.1.11"
 
 "grapheme-splitter@^1.0.4":
   "integrity" "sha512-bzh50DW9kTPM00T8y4o8vQg89Di9oLJVLW/KaOGIXJWP/iqCN6WKYkbNOF04vFLJhwcpYUh9ydh/+5vpOqV4YQ=="
@@ -2541,7 +2546,7 @@
   "resolved" "https://registry.npmjs.org/queue-microtask/-/queue-microtask-1.2.3.tgz"
   "version" "1.2.3"
 
-"react-dom@^17.0.0 || ^18.0.0", "react-dom@^17.0.2 || ^18.0.0-0", "react-dom@>=16.6.0", "react-dom@18.2.0":
+"react-dom@^17.0.0 || ^18.0.0", "react-dom@^17.0.2 || ^18.0.0-0", "react-dom@>=16", "react-dom@>=16.6.0", "react-dom@18.2.0":
   "integrity" "sha512-6IMTriUmvsjHUjNtEDudZfuDQUoWXVxKHhlEGSk81n4YFS+r/Kl99wXiwlVXtPBtJenozv2P+hxDsw9eA7Xo6g=="
   "resolved" "https://registry.npmjs.org/react-dom/-/react-dom-18.2.0.tgz"
   "version" "18.2.0"
@@ -2553,6 +2558,13 @@
   "integrity" "sha512-EbYYkCG2p8ywe7ikOH2l02lAFMrrrslZi1I8fqd8ifDGNAkhomHZQzQsP6ksvzrWBKntRe8b5L5L7Zsd+Gm02Q=="
   "resolved" "https://registry.npmjs.org/react-hook-form/-/react-hook-form-7.36.1.tgz"
   "version" "7.36.1"
+
+"react-hot-toast@^2.4.0":
+  "integrity" "sha512-qnnVbXropKuwUpriVVosgo8QrB+IaPJCpL8oBI6Ov84uvHZ5QQcTp2qg6ku2wNfgJl6rlQXJIQU5q+5lmPOutA=="
+  "resolved" "https://registry.npmjs.org/react-hot-toast/-/react-hot-toast-2.4.0.tgz"
+  "version" "2.4.0"
+  dependencies:
+    "goober" "^2.1.10"
 
 "react-is@^16.13.1", "react-is@^16.7.0":
   "integrity" "sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ=="
