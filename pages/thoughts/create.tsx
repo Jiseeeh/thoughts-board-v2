@@ -18,6 +18,7 @@ import {
 
 import Container from "../../components/Container";
 import Button from "../../components/Button";
+import Thought from "../../interfaces/IThoughts";
 
 // ? Tooltip from mui
 const HtmlTooltip = styled(({ className, ...props }: TooltipProps) => (
@@ -32,20 +33,6 @@ const HtmlTooltip = styled(({ className, ...props }: TooltipProps) => (
   },
 }));
 
-// ? Enum for FormData
-enum TagsEnum {
-  Technology = "Technology",
-  Random = "Random",
-  Life = "Life",
-  Truth = "Truth",
-}
-
-interface FormData {
-  title: string;
-  body: string;
-  tag: TagsEnum;
-}
-
 // ? Component
 const CreateThought: React.FC = () => {
   const width = {
@@ -57,9 +44,9 @@ const CreateThought: React.FC = () => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<FormData>();
+  } = useForm<Thought>();
 
-  const onSubmit: SubmitHandler<FormData> = async (data) => {
+  const onSubmit: SubmitHandler<Thought> = async (data) => {
     console.log(data);
   };
 
