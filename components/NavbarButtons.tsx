@@ -19,6 +19,7 @@ const NavbarButtons: React.FC<NavbarButtonsProps> = ({ user }) => {
 
   const signOut = () => {
     localStorage.removeItem("token");
+    localStorage.removeItem("username");
     router.reload();
   };
 
