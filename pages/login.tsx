@@ -40,7 +40,7 @@ const Login: React.FC = () => {
     // set token to local
     // for later use, to verify the user.
     localStorage.setItem("token", response.data.token);
-
+    localStorage.setItem("username", username);
     // redirect to home
     router.push("/");
   };
