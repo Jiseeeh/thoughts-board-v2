@@ -5,13 +5,15 @@ import IconButton from "@mui/material/IconButton";
 interface ButtonComponentProps {
   content: string;
   submit: boolean;
+  isDisabled?: boolean;
   onClick?: () => void;
 }
 
 const ButtonComponent: React.FC<ButtonComponentProps> = ({
   content,
-  onClick,
   submit,
+  isDisabled,
+  onClick,
 }) => {
   return (
     <>
@@ -26,6 +28,7 @@ const ButtonComponent: React.FC<ButtonComponentProps> = ({
           },
         }}
         onClick={onClick}
+        disabled={isDisabled || false}
       >
         {content}
       </Button>

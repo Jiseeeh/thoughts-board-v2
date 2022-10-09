@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import ReactMarkdown from "react-markdown";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { useRouter } from "next/router";
@@ -39,6 +39,7 @@ const HtmlTooltip = styled(({ className, ...props }: TooltipProps) => (
 // ? Component
 const CreateThought: React.FC = () => {
   const router = useRouter();
+  const [isButtonDisabled, setIsButtonDisabled] = useState(false);
   const width = {
     minWidth: 300,
     maxWidth: 300,
@@ -58,6 +59,9 @@ const CreateThought: React.FC = () => {
 
     // toast success then back to home
     if (response.data.success) {
+      // to prevent spam
+      setIsButtonDisabled(true);
+
       toast.success("Thought created!", {
         duration: 2000,
       });
@@ -142,6 +146,7 @@ const CreateThought: React.FC = () => {
             <Button
               submit={false}
               content="Post"
+              isDisabled={isButtonDisabled}
               onClick={handleSubmit(onSubmit)}
             />
           </Box>
