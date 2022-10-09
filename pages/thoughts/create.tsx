@@ -1,6 +1,7 @@
 import React from "react";
 import ReactMarkdown from "react-markdown";
 import { useForm, SubmitHandler } from "react-hook-form";
+import axios from "axios";
 import {
   Box,
   Typography,
@@ -47,7 +48,12 @@ const CreateThought: React.FC = () => {
   } = useForm<Thought>();
 
   const onSubmit: SubmitHandler<Thought> = async (data) => {
-    console.log(data);
+    const response = await axios.post("/api/create", {
+      data,
+      username: localStorage.getItem("username"),
+    });
+
+    // TOAST SUCCESS then back to home
   };
 
   return (
