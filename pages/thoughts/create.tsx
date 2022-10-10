@@ -64,6 +64,7 @@ const CreateThought: React.FC = () => {
 
       toast.success("Thought created!", {
         duration: 2000,
+        position: "bottom-left",
       });
 
       setTimeout(() => {
