@@ -102,3 +102,13 @@ export async function createThought(
     };
   }
 }
+
+export async function fetchThoughts() {
+  try {
+    const thoughts = await prisma.thought.findMany();
+
+    return { thoughts };
+  } catch (error) {
+    return { error, success: false };
+  }
+}
