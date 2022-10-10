@@ -31,7 +31,12 @@ const Home: NextPage = ({
   useEffect(() => {
     const Thoughts = Object.values(data).map((thought) => (
       <Grid xs={16} sm={8} md={4} key={thought.id}>
-        <Thought key={thought.id} title={thought.title} body={thought.body} />
+        <Thought
+          key={thought.id}
+          title={thought.title}
+          body={thought.body}
+          tag={thought.tag}
+        />
       </Grid>
     ));
 
