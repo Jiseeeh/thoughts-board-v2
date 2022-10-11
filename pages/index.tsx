@@ -71,6 +71,8 @@ const Home: NextPage = ({
    * is then set to the thoughts state.
    */
   const mapThoughts = () => {
+    setFilterState("All");
+
     const Thoughts = Object.values(data).map((thought) => (
       <Grid xs={16} sm={8} md={4} key={thought.id}>
         <Thought
