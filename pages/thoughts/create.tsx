@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import ReactMarkdown from "react-markdown";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { useRouter } from "next/router";
 import axios from "axios";
@@ -21,7 +20,7 @@ import {
 
 import Container from "../../components/Container";
 import Button from "../../components/Button";
-import Thought from "../../interfaces/IThoughts";
+import { ThoughtForm } from "../../interfaces/IThoughtForm";
 
 // ? Tooltip from mui
 const HtmlTooltip = styled(({ className, ...props }: TooltipProps) => (
@@ -49,9 +48,9 @@ const CreateThought: React.FC = () => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<Thought>();
+  } = useForm<ThoughtForm>();
 
-  const onSubmit: SubmitHandler<Thought> = async (data) => {
+  const onSubmit: SubmitHandler<ThoughtForm> = async (data) => {
     const response = await axios.post("/api/create", {
       data,
       username: localStorage.getItem("username"),
@@ -119,11 +118,6 @@ const CreateThought: React.FC = () => {
             title={
               <React.Fragment>
                 <Typography color="inherit">This supports markdown</Typography>
-                <ReactMarkdown>
-                  {
-                    "# # Heading\n## ## Heading\n### ### Heading\n#### #### Heading\n##### ##### Heading\n###### ###### Heading"
-                  }
-                </ReactMarkdown>
               </React.Fragment>
             }
           >
