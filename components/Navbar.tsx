@@ -15,6 +15,7 @@ export default function Navbar() {
   const userContext = useContext(UserContext);
 
   function backToHome() {
+    if (router.pathname === "/") return;
     router.push("/");
   }
 
