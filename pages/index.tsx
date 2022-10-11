@@ -50,7 +50,8 @@ const Home: NextPage = ({
    */
   const filterBy = (tag: string) => {
     setFilterState(tag);
-    const newThoughts = Object.values(data)
+
+    const filteredThoughts = Object.values(data)
       .filter((thought) => thought.tag === tag)
       .map((thought) => (
         <Grid xs={16} sm={8} md={4} key={thought.id}>
@@ -63,7 +64,7 @@ const Home: NextPage = ({
         </Grid>
       ));
 
-    setThoughts(newThoughts);
+    setThoughts(filteredThoughts);
   };
 
   /**
