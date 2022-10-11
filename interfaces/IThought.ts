@@ -4,5 +4,5 @@ export default interface Thought {
   id: number;
   tag: string;
   title: string;
-  userId?: string;
+  userId?: number;
 }
