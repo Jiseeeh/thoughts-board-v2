@@ -1,5 +1,5 @@
 import { prisma } from "./prisma";
-import Thought from "../interfaces/IThoughts";
+import { ThoughtForm } from "../interfaces/IThoughtForm";
 
 /**
  * If a user is found with the username, return false, otherwise return true.
@@ -70,12 +70,12 @@ export async function loginUser(username: string, password: string) {
 
 /**
  * It creates a thought and returns the thought created
- * @param {Thought}  - Thought -&gt; { tag: string, title: string, body: string }
+ * @param {ThoughtForm}  - Thought -&gt; { tag: string, title: string, body: string }
  * @param {string} username - string
  * @returns An object with an error and a success property.
  */
 export async function createThought(
-  { tag, title, body }: Thought,
+  { tag, title, body }: ThoughtForm,
   username: string
 ) {
   try {
