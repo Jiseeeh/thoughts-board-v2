@@ -60,6 +60,8 @@ const Home: NextPage = ({
             title={thought.title}
             body={thought.body}
             tag={thought.tag}
+            id={thought.id}
+            userId={thought.userId}
           />
         </Grid>
       ));
@@ -81,6 +83,8 @@ const Home: NextPage = ({
           title={thought.title}
           body={thought.body}
           tag={thought.tag}
+          id={thought.id}
+          userId={thought.userId}
         />
       </Grid>
     ));

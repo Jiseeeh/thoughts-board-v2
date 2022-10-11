@@ -3,24 +3,24 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { useRouter } from "next/router";
 import axios from "axios";
 import toast from "react-hot-toast";
-import {
-  Box,
-  Typography,
-  InputLabel,
-  MenuItem,
-  FormControl,
-  Select,
-  TextField,
-  Stack,
-  Tooltip,
-  TooltipProps,
-  tooltipClasses,
-  styled,
-} from "@mui/material";
 
 import Container from "../../components/Container";
 import Button from "../../components/Button";
 import { ThoughtForm } from "../../interfaces/IThoughtForm";
+import {
+  Tooltip,
+  TooltipProps,
+  tooltipClasses,
+  Stack,
+  Typography,
+  Box,
+  MenuItem,
+  FormControl,
+  InputLabel,
+  Select,
+  TextField,
+} from "@mui/material";
+import { styled } from "@mui/material/styles";
 
 // ? Tooltip from mui
 const HtmlTooltip = styled(({ className, ...props }: TooltipProps) => (
@@ -43,7 +43,6 @@ const CreateThought: React.FC = () => {
     minWidth: 300,
     maxWidth: 300,
   };
-
   const {
     register,
     handleSubmit,
