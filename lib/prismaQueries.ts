@@ -116,3 +116,36 @@ export async function fetchThoughts() {
     return { error, success: false };
   }
 }
+
+type query = string | string[] | undefined;
+/**
+ * Fetch a thought by its id and return the user and thought objects.
+ * @param {query} userId - query, thoughtId: query
+ * @param {query} thoughtId - query
+ * @returns { user, thought }
+ */
+export async function fetchThought(userId: query, thoughtId: query) {
+  try {
+    const user = await prisma.user.findFirst({
+      where: {
+        id: Number(userId),
+      },
+      select: {
+        username: true,
+      },
+    });
+
+    const thought = await prisma.thought.findFirst({
+      where: {
+        id: Number(thoughtId),
+      },
+    });
+
+    return {
+      user,
+      thought,
+    };
+  } catch (error) {
+    return { error, success: false };
+  }
+}
