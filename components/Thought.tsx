@@ -9,14 +9,19 @@ import InsertEmoticonIcon from "@mui/icons-material/InsertEmoticon";
 import ComputerIcon from "@mui/icons-material/Computer";
 import EmojiPeopleIcon from "@mui/icons-material/EmojiPeople";
 import QuestionMarkIcon from "@mui/icons-material/QuestionMark";
+import { useRouter } from "next/router";
 
 interface ThoughtProps {
   title: string;
   body: string;
   tag: string;
+  id: number;
+  userId?: number;
 }
 
-const Thought: React.FC<ThoughtProps> = ({ title, body, tag }) => {
+const Thought: React.FC<ThoughtProps> = ({ title, body, tag, userId, id }) => {
+  const router = useRouter();
+
   const chipIcon = (tag: string) => {
     switch (tag) {
       case "Random":
@@ -43,6 +48,10 @@ const Thought: React.FC<ThoughtProps> = ({ title, body, tag }) => {
     }
   };
 
+  const seeFullOnClick = () => {
+    router.push(`/thoughts/${userId}/${id}`);
+  };
+
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardContent>
@@ -60,7 +69,9 @@ const Thought: React.FC<ThoughtProps> = ({ title, body, tag }) => {
         />
       </CardContent>
       <CardActions>
-        <Button size="small">See full</Button>
+        <Button size="small" onClick={seeFullOnClick}>
+          See full
+        </Button>
       </CardActions>
     </Card>
   );
