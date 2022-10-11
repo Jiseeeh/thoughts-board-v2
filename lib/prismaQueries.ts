@@ -103,6 +103,10 @@ export async function createThought(
   }
 }
 
+/**
+ * It fetches all the thoughts from the database and returns them.
+ * @returns An object with a thoughts property and a value of an array of thoughts.
+ */
 export async function fetchThoughts() {
   try {
     const thoughts = await prisma.thought.findMany();
