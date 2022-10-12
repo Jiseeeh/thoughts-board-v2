@@ -26,6 +26,7 @@ const ButtonComponent: React.FC<ButtonComponentProps> = ({
           ":hover": {
             background: "#0e172c",
           },
+          margin: 1,
         }}
         onClick={onClick}
         disabled={isDisabled || false}
