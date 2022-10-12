@@ -1,5 +1,6 @@
 import { prisma } from "./prisma";
 import { ThoughtForm } from "../interfaces/IThoughtForm";
+import Thought from "../interfaces/IThought";
 
 /**
  * If a user is found with the username, return false, otherwise return true.
@@ -108,6 +109,7 @@ export async function createThought(
  * @returns An object with a thoughts property and a value of an array of thoughts.
  */
 export async function fetchThoughts() {
+  // TODO: ascending
   try {
     const thoughts = await prisma.thought.findMany();
 
@@ -147,5 +149,65 @@ export async function fetchThought(userId: query, thoughtId: query) {
     };
   } catch (error) {
     return { error, success: false };
+  }
+}
+
+/**
+ * It takes a thoughtId and a data object as arguments, and then updates the thought with the given
+ * thoughtId with the data object
+ * @param {number} thoughtId - number - The id of the thought you want to update
+ * @param {Thought} data - Thought
+ * @returns An object with two properties:
+ * 1. updatedThought: The updated thought
+ * 2. success: A boolean indicating whether the update was successful
+ */
+export async function updateThought(thoughtId: number, data: Thought) {
+  try {
+    const updatedThought = await prisma.thought.update({
+      where: {
+        id: thoughtId,
+      },
+      data: {
+        tag: data.tag,
+        title: data.title,
+        body: data.body,
+      },
+    });
+
+    return {
+      updatedThought,
+      success: true,
+    };
+  } catch (error) {
+    return {
+      error,
+      success: false,
+    };
+  }
+}
+
+/**
+ * It deletes a thought from the database and returns an object with a boolean value of success and
+ * either the deleted thought or an error.
+ * @param {number} thoughtId - number - The id of the thought you want to delete
+ * @returns An object with two properties: deletedThought and success.
+ */
+export async function deleteThought(thoughtId: number) {
+  try {
+    const deletedThought = await prisma.thought.delete({
+      where: {
+        id: thoughtId,
+      },
+    });
+
+    return {
+      deletedThought,
+      success: true,
+    };
+  } catch (error) {
+    return {
+      error,
+      success: false,
+    };
   }
 }
