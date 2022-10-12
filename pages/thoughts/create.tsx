@@ -3,9 +3,6 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { useRouter } from "next/router";
 import axios from "axios";
 import {
-  Tooltip,
-  TooltipProps,
-  tooltipClasses,
   Stack,
   Typography,
   Box,
@@ -14,26 +11,13 @@ import {
   InputLabel,
   Select,
   TextField,
-  styled,
 } from "@mui/material";
 
 import Container from "../../components/Container";
 import Button from "../../components/Button";
+import HtmlTooltip from "../../components/HtmlToolTip";
 import { showToast } from "../../lib/helper";
 import { ThoughtForm } from "../../interfaces/IThoughtForm";
-
-// ? Tooltip from mui
-const HtmlTooltip = styled(({ className, ...props }: TooltipProps) => (
-  <Tooltip {...props} classes={{ popper: className }} />
-))(({ theme }) => ({
-  [`& .${tooltipClasses.tooltip}`]: {
-    backgroundColor: "#f9f8fc",
-    color: "#0e172c",
-    maxWidth: 220,
-    fontSize: theme.typography.pxToRem(12),
-    border: "1px solid #dadde9",
-  },
-}));
 
 // ? Component
 const CreateThought: React.FC = () => {
