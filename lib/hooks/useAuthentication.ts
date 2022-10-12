@@ -2,10 +2,11 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 
 /**
- * It checks if the user is authenticated, if not, it redirects them to the sign in page.
+ * It checks if the user is authenticated by verifying the token in localStorage. If the token is
+ * valid, it sets the username and password in state and returns the isAuthenticated, username, and
+ * password.
  * @returns An object with three properties: isAuthenticated, username, and password.
  */
-
 export default function useAuthentication() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [username, setUsername] = useState("");
