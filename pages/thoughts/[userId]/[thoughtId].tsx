@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { GetServerSideProps, InferGetServerSidePropsType } from "next";
 import { useRouter } from "next/router";
 import axios from "axios";
-import toast from "react-hot-toast";
 import isEqual from "lodash.isequal";
 import {
   Stack,
@@ -20,6 +19,7 @@ import Button from "../../../components/Button";
 import HtmlTooltip from "../../../components/HtmlToolTip";
 import { TagsEnum } from "../../../interfaces/IThoughtForm";
 import { fetchThought } from "../../../lib/prismaQueries";
+import { showToast } from "../../../lib/helper";
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const userId = context.params?.userId;
@@ -71,10 +71,7 @@ const Thought: React.FC = ({
 
     //? means there was no change
     if (areThoughtsEqual) {
-      toast.error("You didn't change anything!", {
-        duration: 2000,
-        position: "bottom-left",
-      });
+      showToast("error", "You didn't change anything!");
       return;
     }
 
@@ -86,11 +83,7 @@ const Thought: React.FC = ({
     if (response.data.success) {
       // to prevent spam
       setIsButtonDisabled(true);
-
-      toast.success("Successfully Updated!", {
-        duration: 2000,
-        position: "bottom-left",
-      });
+      showToast("success", "Successfully updated!");
 
       setTimeout(() => {
         router.push("/");
@@ -109,10 +102,7 @@ const Thought: React.FC = ({
       // to prevent spam
       setIsButtonDisabled(true);
 
-      toast.success("Successfully Deleted!", {
-        duration: 2000,
-        position: "bottom-left",
-      });
+      showToast("success", "Successfully Deleted!");
 
       setTimeout(() => {
         router.push("/");

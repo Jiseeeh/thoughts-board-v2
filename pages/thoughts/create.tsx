@@ -2,11 +2,6 @@ import React, { useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { useRouter } from "next/router";
 import axios from "axios";
-import toast from "react-hot-toast";
-
-import Container from "../../components/Container";
-import Button from "../../components/Button";
-import { ThoughtForm } from "../../interfaces/IThoughtForm";
 import {
   Tooltip,
   TooltipProps,
@@ -19,8 +14,13 @@ import {
   InputLabel,
   Select,
   TextField,
+  styled,
 } from "@mui/material";
-import { styled } from "@mui/material/styles";
+
+import Container from "../../components/Container";
+import Button from "../../components/Button";
+import { showToast } from "../../lib/helper";
+import { ThoughtForm } from "../../interfaces/IThoughtForm";
 
 // ? Tooltip from mui
 const HtmlTooltip = styled(({ className, ...props }: TooltipProps) => (
@@ -60,10 +60,7 @@ const CreateThought: React.FC = () => {
       // to prevent spam
       setIsButtonDisabled(true);
 
-      toast.success("Thought created!", {
-        duration: 2000,
-        position: "bottom-left",
-      });
+      showToast("success", "Thought created!");
 
       setTimeout(() => {
         router.push("/");
