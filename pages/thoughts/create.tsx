@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { useRouter } from "next/router";
 import axios from "axios";
@@ -16,12 +16,14 @@ import {
 import Container from "../../components/Container";
 import Button from "../../components/Button";
 import HtmlTooltip from "../../components/HtmlToolTip";
+import useAuthentication from "../../lib/hooks/useAuthentication";
 import { showToast } from "../../lib/helper";
 import { ThoughtForm } from "../../interfaces/IThoughtForm";
 
 // ? Component
 const CreateThought: React.FC = () => {
   const router = useRouter();
+  const { isAuthenticated } = useAuthentication();
   const [isButtonDisabled, setIsButtonDisabled] = useState(false);
   const width = {
     minWidth: 300,
@@ -51,6 +53,16 @@ const CreateThought: React.FC = () => {
       }, 2000);
     }
   };
+
+  // prevent posting if not logged in
+  useEffect(() => {
+    if (!isAuthenticated) {
+      setIsButtonDisabled(true);
+      return;
+    }
+
+    setIsButtonDisabled(false);
+  }, [isAuthenticated]);
 
   return (
     <>
@@ -120,7 +132,7 @@ const CreateThought: React.FC = () => {
           >
             <Button
               submit={false}
-              content="Post"
+              content={!isAuthenticated ? "Login first!" : "Post"}
               isDisabled={isButtonDisabled}
               onClick={handleSubmit(onSubmit)}
             />
