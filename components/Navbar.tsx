@@ -42,7 +42,7 @@ export default function Navbar() {
             component="div"
             sx={{ flexGrow: 1, color: "#0e172c" }}
           >
-            Home
+            T-B
           </Typography>
           <NavbarButtons user={userContext} />
         </Toolbar>
