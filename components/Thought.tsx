@@ -10,7 +10,7 @@ import ComputerIcon from "@mui/icons-material/Computer";
 import EmojiPeopleIcon from "@mui/icons-material/EmojiPeople";
 import QuestionMarkIcon from "@mui/icons-material/QuestionMark";
 import { useRouter } from "next/router";
-
+import { useTheme } from "@mui/material";
 interface ThoughtProps {
   title: string;
   body: string;
@@ -21,6 +21,7 @@ interface ThoughtProps {
 
 const Thought: React.FC<ThoughtProps> = ({ title, body, tag, userId, id }) => {
   const router = useRouter();
+  const theme = useTheme();
 
   const chipIcon = (tag: string) => {
     switch (tag) {
@@ -40,7 +41,7 @@ const Thought: React.FC<ThoughtProps> = ({ title, body, tag, userId, id }) => {
       case "Random":
         return "#d9d4e7";
       case "Truth":
-        return "#a786df";
+        return "#d4c3ef";
       case "Life":
         return "#fec7d7";
       case "Technology":
@@ -55,7 +56,12 @@ const Thought: React.FC<ThoughtProps> = ({ title, body, tag, userId, id }) => {
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardContent>
-        <Typography gutterBottom variant="h5" component="div">
+        <Typography
+          gutterBottom
+          variant="h5"
+          component="div"
+          fontWeight={theme.typography.fontWeightMedium}
+        >
           {title}
         </Typography>
         <Typography variant="body2" color="text.secondary" noWrap mb={2}>
