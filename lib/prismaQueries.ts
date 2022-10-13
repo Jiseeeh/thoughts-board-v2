@@ -53,18 +53,21 @@ export async function addUser(username: string, password: string) {
  */
 export async function loginUser(username: string, password: string) {
   try {
-    const user = await prisma.user.findFirst({
+    const user = await prisma.user.findFirstOrThrow({
       where: {
         username,
         password,
       },
     });
 
-    return user;
+    return {
+      user,
+      success: true,
+    };
   } catch (error) {
     return {
-      success: false,
       error,
+      success: false,
     };
   }
 }
