@@ -8,6 +8,8 @@ import FilterListIcon from "@mui/icons-material/FilterList";
 import Grid from "@mui/material/Unstable_Grid2";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
+import ScrollToTop from "react-scroll-to-top";
+import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
 
 import Container from "../components/Container";
 import Button from "../components/Button";
@@ -103,6 +105,7 @@ const Home: NextPage = ({
   return (
     <>
       <Container>
+        <ScrollToTop smooth component={<ArrowUpwardIcon />} />
         <Box
           sx={{
             width: 1,
