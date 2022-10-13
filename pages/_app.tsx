@@ -1,7 +1,7 @@
 import { ScopedCssBaseline } from "@mui/material";
 import type { AppProps } from "next/app";
 import { useState, useMemo, useEffect } from "react";
-import { useRouter } from "next/router";
+import { useContext } from "react";
 import { Toaster } from "react-hot-toast";
 import { ThemeProvider } from "@mui/material";
 
