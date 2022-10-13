@@ -21,7 +21,7 @@ export default function useAuthentication() {
 
       if (response.data.success) {
         // set for context
-        const { username, password } = response.data.decoded;
+        const { username, password } = response.data.decoded.user;
         setUsername(username);
         setPassword(password);
         setIsAuthenticated(true);
