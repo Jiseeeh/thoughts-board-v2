@@ -3,11 +3,13 @@ import type { AppProps } from "next/app";
 import { useState, useMemo } from "react";
 import { useRouter } from "next/router";
 import { Toaster } from "react-hot-toast";
+import { ThemeProvider } from "@mui/material";
 
 import "../styles/globals.css";
 import Navbar from "../components/Navbar";
 import UserContext from "../lib/UserContext";
 import User from "../interfaces/IUser";
+import theme from "../mui/theme";
 import useAuthentication from "../lib/hooks/useAuthentication";
 
 function MyApp({ Component, pageProps }: AppProps) {
@@ -20,11 +22,13 @@ function MyApp({ Component, pageProps }: AppProps) {
 
   return (
     <UserContext.Provider value={userValue}>
-      <ScopedCssBaseline>
-        <Navbar />
-        <Component {...pageProps} />
-      </ScopedCssBaseline>
-      <Toaster />
+      <ThemeProvider theme={theme}>
+        <ScopedCssBaseline>
+          <Navbar />
+          <Component {...pageProps} />
+        </ScopedCssBaseline>
+        <Toaster />
+      </ThemeProvider>
     </UserContext.Provider>
   );
 }
