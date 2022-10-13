@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from "next";
+import { GetServerSideProps, InferGetServerSidePropsType } from "next";
 import { useRouter } from "next/router";
 import axios from "axios";
 import isEqual from "lodash.isequal";
@@ -18,23 +18,10 @@ import Container from "../../../components/Container";
 import Button from "../../../components/Button";
 import HtmlTooltip from "../../../components/HtmlToolTip";
 import { TagsEnum } from "../../../interfaces/IThoughtForm";
-import { fetchThought, fetchThoughts } from "../../../lib/prismaQueries";
+import { fetchThought } from "../../../lib/prismaQueries";
 import { showToast } from "../../../lib/helper";
 
-export const getStaticPaths = async () => {
-  const response = await fetchThoughts();
-
-  const paths = response?.thoughts?.map((thought) => ({
-    params: { userId: String(thought.userId), thoughtId: String(thought.id) },
-  }));
-
-  return {
-    paths,
-    fallback: false,
-  };
-};
-
-export const getStaticProps: GetStaticProps = async (context) => {
+export const getServerSideProps: GetServerSideProps = async (context) => {
   const userId = context.params?.userId;
   const thoughtId = context.params?.thoughtId;
 
@@ -42,13 +29,12 @@ export const getStaticProps: GetStaticProps = async (context) => {
 
   return {
     props: { response: JSON.stringify(response) },
-    revalidate: 10,
   };
 };
 
 const Thought: React.FC = ({
   response,
-}: InferGetStaticPropsType<typeof getStaticProps>) => {
+}: InferGetServerSidePropsType<typeof getServerSideProps>) => {
   const [data] = useState(JSON.parse(response));
   const [isButtonDisabled, setIsButtonDisabled] = useState(false);
   const [isOwnThought, setIsOwnThought] = useState(false);
@@ -78,9 +64,8 @@ const Thought: React.FC = ({
       body,
     };
 
-    const areThoughtsEqual = isEqual(originalThought, thought);
-
     // check if a change happened
+    const areThoughtsEqual = isEqual(originalThought, thought);
 
     //? means there was no change
     if (areThoughtsEqual) {
