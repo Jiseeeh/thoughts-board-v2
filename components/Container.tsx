@@ -22,7 +22,7 @@ export default function SimpleContainer({ children, pageTitle }: LayoutProps) {
           <title>{pageTitle || "Thoughts Board"}</title>
           <meta
             name="description"
-            content="A simple web app called Thoughts Board, where you can submit your thoughts freely."
+            content="A simple web app called Thoughts Board, where you can submit your thoughts and ideas freely. Share your thoughts and ideas in Thoughts Board now!"
           />
           <link rel="icon" href="/favicon.ico" />
         </Head>
