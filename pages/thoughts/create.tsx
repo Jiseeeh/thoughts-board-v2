@@ -41,11 +41,11 @@ const CreateThought: React.FC = () => {
       username: localStorage.getItem("username"),
     });
 
+    // to prevent spam
+    setIsButtonDisabled(true);
+
     // toast success then back to home
     if (response.data.success) {
-      // to prevent spam
-      setIsButtonDisabled(true);
-
       showToast("success", "Thought created!");
 
       setTimeout(() => {

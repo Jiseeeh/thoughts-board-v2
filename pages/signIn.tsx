@@ -41,12 +41,13 @@ const SignIn: React.FC = () => {
     // sign in to api
     const response = await axios.post("/api/sign-in", data);
 
+    // prevent spam
+    setIsButtonDisabled(true);
+
     if (response.data) {
       localStorage.setItem("token", response.data.token);
       localStorage.setItem("username", response.data.username);
 
-      // prevent spam
-      setIsButtonDisabled(true);
       showToast("success", "Sign in success!");
 
       setTimeout(() => {

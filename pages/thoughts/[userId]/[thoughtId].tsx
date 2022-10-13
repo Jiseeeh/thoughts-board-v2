@@ -79,9 +79,10 @@ const Thought: React.FC = ({
       thought,
     });
 
+    // to prevent spam
+    setIsButtonDisabled(true);
+
     if (response.data.success) {
-      // to prevent spam
-      setIsButtonDisabled(true);
       showToast("success", "Successfully updated!");
 
       setTimeout(() => {
@@ -97,10 +98,10 @@ const Thought: React.FC = ({
       },
     });
 
-    if (response.data.success) {
-      // to prevent spam
-      setIsButtonDisabled(true);
+    // to prevent spam
+    setIsButtonDisabled(true);
 
+    if (response.data.success) {
       showToast("success", "Successfully Deleted!");
 
       setTimeout(() => {
