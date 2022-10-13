@@ -11,6 +11,7 @@ import SignInMessage from "../components/SignInMessage";
 import UserContext from "../lib/UserContext";
 import useAuthentication from "../lib/hooks/useAuthentication";
 import useAuthRedirect from "../lib/hooks/useAuthRedirect";
+import { showToast } from "../lib/helper";
 
 type FormData = {
   username: string;
@@ -21,6 +22,7 @@ const SignIn: React.FC = () => {
   const [formValue, setFormValue] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [isValid, setIsValid] = useState(false);
+  const [isButtonDisabled, setIsButtonDisabled] = useState(false);
   const { setUser } = useContext(UserContext);
   const router = useRouter();
   const { isAuthenticated } = useAuthentication();
@@ -41,7 +43,15 @@ const SignIn: React.FC = () => {
 
     if (response.data) {
       localStorage.setItem("token", response.data.token);
-      router.push("/");
+      localStorage.setItem("username", response.data.username);
+
+      // prevent spam
+      setIsButtonDisabled(true);
+      showToast("success", "Sign in success!");
+
+      setTimeout(() => {
+        router.push("/");
+      }, 2000);
     }
   };
 
@@ -124,7 +134,7 @@ const SignIn: React.FC = () => {
               helperText={errors.password && "Password is required"}
               {...register("password", { required: true })}
             />
-            <Button submit content="Sign in" />
+            <Button submit content="Sign in" isDisabled={isButtonDisabled} />
           </Stack>
         </Box>
       </Container>
