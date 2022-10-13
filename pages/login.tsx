@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useState, useContext } from "react";
 import { Box, TextField, Stack, Typography } from "@mui/material";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { useRouter } from "next/router";
@@ -7,6 +7,7 @@ import axios from "axios";
 import Container from "../components/Container";
 import Button from "../components/Button";
 import UserContext from "../lib/UserContext";
+import { showToast } from "../lib/helper";
 import useAuthentication from "../lib/hooks/useAuthentication";
 import useAuthRedirect from "../lib/hooks/useAuthRedirect";
 
@@ -16,7 +17,7 @@ type FormData = {
 };
 
 const Login: React.FC = () => {
-  const [isLoginFailed, setIsLoginFailed] = useState(false);
+  const [isButtonDisabled, setIsButtonDisabled] = useState(false);
   const { setUser } = useContext(UserContext);
   const { isAuthenticated } = useAuthentication();
   const router = useRouter();
@@ -28,21 +29,27 @@ const Login: React.FC = () => {
 
   const onSubmit: SubmitHandler<FormData> = async (data) => {
     const response = await axios.post("/api/login", data);
-    if (!response.data) {
-      setIsLoginFailed(true);
+
+    if (!response.data.success) {
+      showToast("error", "Login Failed!");
       return;
     }
-
     // set for context
-    const { username, password } = response.data;
+    const { username, password } = response.data.user;
     if (setUser !== undefined) setUser({ username, password });
 
     // set token to local
     // for later use, to verify the user.
     localStorage.setItem("token", response.data.token);
     localStorage.setItem("username", username);
-    // redirect to home
-    router.push("/");
+
+    // prevent spam;
+    setIsButtonDisabled(true);
+    showToast("success", "Login Success!");
+    setTimeout(() => {
+      // redirect to home
+      router.push("/");
+    }, 2000);
   };
 
   // custom hook for redirecting the user if he/she
@@ -78,8 +85,7 @@ const Login: React.FC = () => {
               helperText={errors.password && "Password is required"}
               {...register("password", { required: true })}
             />
-            {isLoginFailed && <span>Login Failed!</span>}
-            <Button submit content="Login" />
+            <Button submit content="Login" isDisabled={isButtonDisabled} />
           </Stack>
         </Box>
       </Container>
