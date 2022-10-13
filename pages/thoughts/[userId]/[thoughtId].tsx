@@ -50,7 +50,6 @@ const Thought: React.FC = ({
   useEffect(() => {
     const loggedUser = localStorage.getItem("username");
     if (loggedUser === data["user"].username) setIsOwnThought(true);
-    console.log(data["thought"]);
   }, []);
 
   const onUpdateBtnClick = async () => {
