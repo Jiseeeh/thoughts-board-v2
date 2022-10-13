@@ -22,7 +22,7 @@ export const getStaticProps: GetStaticProps = async () => {
 
   return {
     props: { props: JSON.stringify(response.thoughts) },
-    revalidate: 10,
+    revalidate: 2,
   };
 };
 
