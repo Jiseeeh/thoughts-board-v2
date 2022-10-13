@@ -12,15 +12,19 @@ export default async function handler(
 
   const response = await loginUser(username, password);
 
-  // sign the user
-  if (response) {
-    jwt.sign({ ...response }, process.env.SECRET, (err, token) => {
-      if (err) res.status(400);
-
-      res.json({
-        ...response,
-        token,
-      });
+  if (!response.success)
+    res.send({
+      message: "No user found!",
+      success: false,
     });
-  }
+
+  // sign the user
+  jwt.sign({ ...response }, process.env.SECRET, (err, token) => {
+    if (err) res.status(400);
+
+    res.json({
+      ...response,
+      token,
+    });
+  });
 }
