@@ -100,7 +100,7 @@ const SignIn: React.FC = () => {
 
   return (
     <>
-      <Container>
+      <Container pageTitle="Sign In">
         <Box
           component="form"
           onSubmit={handleSubmit(onSubmit)}

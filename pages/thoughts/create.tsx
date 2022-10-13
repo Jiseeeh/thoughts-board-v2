@@ -66,7 +66,7 @@ const CreateThought: React.FC = () => {
 
   return (
     <>
-      <Container>
+      <Container pageTitle="Create Thought">
         <Stack
           direction="column"
           justifyContent="center"

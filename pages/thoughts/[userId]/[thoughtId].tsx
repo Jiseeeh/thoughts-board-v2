@@ -111,7 +111,7 @@ const Thought: React.FC = ({
 
   return (
     <>
-      <Container>
+      <Container pageTitle="Thought">
         <Stack
           direction="column"
           justifyContent="center"

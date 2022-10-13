@@ -58,7 +58,7 @@ const Login: React.FC = () => {
 
   return (
     <>
-      <Container>
+      <Container pageTitle="Login">
         <Box
           component="form"
           onSubmit={handleSubmit(onSubmit)}
