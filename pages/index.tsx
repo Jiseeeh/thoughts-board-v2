@@ -121,8 +121,8 @@ const Home: NextPage = ({
             content="Submit a Thought"
             onClick={onSubmitAThoughtClick}
           />
-          <IconButton onClick={handleClick}>
-            <FilterListIcon sx={{}} />
+          <IconButton onClick={handleClick} aria-label="filter thoughts">
+            <FilterListIcon />
           </IconButton>
           <Menu
             id="demo-positioned-menu"
