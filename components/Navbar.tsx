@@ -35,7 +35,7 @@ export default function Navbar() {
             }}
             onClick={backToHome}
           >
-            <Image src="/home.gif" alt="Home icon" layout="fill" />
+            <Image src="/home.gif" alt="Home icon" layout="fill" priority />
           </IconButton>
           <Typography
             variant="h6"
