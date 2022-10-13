@@ -32,10 +32,10 @@ export default function Navbar() {
             onClick={backToHome}
           >
             <Image
-              src="/home.gif"
+              src="/home.svg"
               alt="Home icon"
-              height={50}
-              width={50}
+              height={35}
+              width={35}
               priority
             />
           </IconButton>
