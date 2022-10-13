@@ -106,10 +106,16 @@ const CreateThought: React.FC = () => {
           />
           {/* TOOLTIP */}
           <HtmlTooltip
-            placement="right"
+            placement="bottom"
             title={
               <React.Fragment>
-                <Typography color="inherit">This supports markdown</Typography>
+                <Typography color="inherit">Express yourself here!</Typography>
+                Just let it out ! but still, be{" "}
+                <strong>
+                  <em>wise</em>
+                </strong>
+                <br />
+                on how you choose your words!
               </React.Fragment>
             }
           >

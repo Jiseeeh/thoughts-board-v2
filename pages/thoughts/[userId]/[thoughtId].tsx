@@ -160,7 +160,7 @@ const Thought: React.FC = ({
           />
           {/* TOOLTIP */}
           <HtmlTooltip
-            placement="right"
+            placement="bottom"
             title={
               <React.Fragment>
                 <Typography color="inherit">Express yourself here!</Typography>
