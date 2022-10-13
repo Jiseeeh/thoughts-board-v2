@@ -29,13 +29,15 @@ export default function Navbar() {
             color="inherit"
             aria-label="icon"
             sx={{ mr: 2 }}
-            style={{
-              height: "3rem",
-              width: "3rem",
-            }}
             onClick={backToHome}
           >
-            <Image src="/home.gif" alt="Home icon" layout="fill" priority />
+            <Image
+              src="/home.gif"
+              alt="Home icon"
+              height={50}
+              width={50}
+              priority
+            />
           </IconButton>
           <Typography
             variant="h6"
