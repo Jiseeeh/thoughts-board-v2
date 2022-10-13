@@ -112,9 +112,12 @@ export async function createThought(
  * @returns An object with a thoughts property and a value of an array of thoughts.
  */
 export async function fetchThoughts() {
-  // TODO: ascending
   try {
-    const thoughts = await prisma.thought.findMany();
+    const thoughts = await prisma.thought.findMany({
+      orderBy: {
+        createdAt: "desc",
+      },
+    });
 
     return { thoughts };
   } catch (error) {
