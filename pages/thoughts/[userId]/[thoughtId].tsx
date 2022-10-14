@@ -73,13 +73,13 @@ const Thought: React.FC = ({
       return;
     }
 
+    // to prevent spam
+    setIsButtonDisabled(true);
+
     const response = await axios.patch("/api/update", {
       thoughtId: data["thought"].id,
       thought,
     });
-
-    // to prevent spam
-    setIsButtonDisabled(true);
 
     if (response.data.success) {
       showToast("success", "Successfully updated!");
@@ -91,14 +91,15 @@ const Thought: React.FC = ({
   };
 
   const onDeleteBtnClick = async () => {
+    // to prevent spam
+    setIsButtonDisabled(true);
+    
     const response = await axios.delete("/api/delete", {
       data: {
         thoughtId: data["thought"].id,
       },
     });
 
-    // to prevent spam
-    setIsButtonDisabled(true);
 
     if (response.data.success) {
       showToast("success", "Successfully Deleted!");

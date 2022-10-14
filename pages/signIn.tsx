@@ -38,11 +38,11 @@ const SignIn: React.FC = () => {
     // set data to the context
     if (setUser !== undefined) setUser({ ...data });
 
-    // sign in to api
-    const response = await axios.post("/api/sign-in", data);
-
     // prevent spam
     setIsButtonDisabled(true);
+
+    // sign in to api
+    const response = await axios.post("/api/sign-in", data);
 
     if (response.data) {
       localStorage.setItem("token", response.data.token);

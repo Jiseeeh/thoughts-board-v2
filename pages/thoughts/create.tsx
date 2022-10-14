@@ -36,13 +36,13 @@ const CreateThought: React.FC = () => {
   } = useForm<ThoughtForm>();
 
   const onSubmit: SubmitHandler<ThoughtForm> = async (data) => {
+    // to prevent spam
+    setIsButtonDisabled(true);
+
     const response = await axios.post("/api/create", {
       data,
       username: localStorage.getItem("username"),
     });
-
-    // to prevent spam
-    setIsButtonDisabled(true);
 
     // toast success then back to home
     if (response.data.success) {

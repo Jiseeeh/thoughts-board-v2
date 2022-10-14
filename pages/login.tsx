@@ -28,9 +28,13 @@ const Login: React.FC = () => {
   } = useForm<FormData>();
 
   const onSubmit: SubmitHandler<FormData> = async (data) => {
+    // prevent spam;
+    setIsButtonDisabled(true);
+
     const response = await axios.post("/api/login", data);
 
     if (!response.data.success) {
+      setIsButtonDisabled(false);
       showToast("error", "Login Failed!");
       return;
     }
@@ -43,8 +47,6 @@ const Login: React.FC = () => {
     localStorage.setItem("token", response.data.token);
     localStorage.setItem("username", username);
 
-    // prevent spam;
-    setIsButtonDisabled(true);
     showToast("success", "Login Success!");
     setTimeout(() => {
       // redirect to home
